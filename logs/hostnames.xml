@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///C:/Program Files (x86)/Nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.80 scan initiated Thu Sep 24 19:17:59 2026 as: nmap -sn -oX S:\\Spellbook\\github\\bluekit\\logs\\hostnames.xml -oN S:\\Spellbook\\github\\bluekit\\logs\\hostnames.txt 192.168.1.0/24 -->
+<nmaprun scanner="nmap" args="nmap -sn -oX S:\\Spellbook\\github\\bluekit\\logs\\hostnames.xml -oN S:\\Spellbook\\github\\bluekit\\logs\\hostnames.txt 192.168.1.0/24" start="1790291879" startstr="Thu Sep 24 19:17:59 2026" version="7.80" xmloutputversion="1.04">
+<verbose level="0"/>
+<debugging level="0"/>
+<host><status state="up" reason="arp-response" reason_ttl="0"/>
+<address addr="192.168.1.1" addrtype="ipv4"/>
+<address addr="3C:BD:C5:10:10:A1" addrtype="mac"/>
+<hostnames>
+<hostname name="G3100.mynetworksettings.com" type="PTR"/>
+</hostnames>
+<times srtt="0" rttvar="3750" to="100000"/>
+</host>
+<host><status state="up" reason="arp-response" reason_ttl="0"/>
+<address addr="192.168.1.153" addrtype="ipv4"/>
+<address addr="CE:0C:EA:05:07:11" addrtype="mac"/>
+<hostnames>
+<hostname name="Oscar-s-S21-Ultra" type="PTR"/>
+</hostnames>
+<times srtt="468000" rttvar="468000" to="2340000"/>
+</host>
+<host><status state="up" reason="arp-response" reason_ttl="0"/>
+<address addr="192.168.1.156" addrtype="ipv4"/>
+<address addr="20:1F:3B:89:84:A9" addrtype="mac"/>
+<hostnames>
+<hostname name="Google-Nest-Mini" type="PTR"/>
+</hostnames>
+<times srtt="380000" rttvar="380000" to="1900000"/>
+</host>
+<host><status state="up" reason="arp-response" reason_ttl="0"/>
+<address addr="192.168.1.157" addrtype="ipv4"/>
+<address addr="68:13:F3:90:1B:F4" addrtype="mac"/>
+<hostnames>
+</hostnames>
+<times srtt="81000" rttvar="81000" to="405000"/>
+</host>
+<host><status state="up" reason="arp-response" reason_ttl="0"/>
+<address addr="192.168.1.161" addrtype="ipv4"/>
+<address addr="14:7F:67:C8:8F:6D" addrtype="mac"/>
+<hostnames>
+<hostname name="LG_Smart_Dryer2_open" type="PTR"/>
+</hostnames>
+<times srtt="731000" rttvar="731000" to="3655000"/>
+</host>
+<host><status state="up" reason="arp-response" reason_ttl="0"/>
+<address addr="192.168.1.163" addrtype="ipv4"/>
+<address addr="94:3A:91:79:5E:A8" addrtype="mac"/>
+<hostnames>
+</hostnames>
+<times srtt="408000" rttvar="408000" to="2040000"/>
+</host>
+<host><status state="up" reason="arp-response" reason_ttl="0"/>
+<address addr="192.168.1.164" addrtype="ipv4"/>
+<address addr="48:A2:E6:5F:DB:15" addrtype="mac"/>
+<hostnames>
+<hostname name="hon-grip-aio-200-01939V2A" type="PTR"/>
+</hostnames>
+<times srtt="419000" rttvar="419000" to="2095000"/>
+</host>
+<host><status state="up" reason="arp-response" reason_ttl="0"/>
+<address addr="192.168.1.165" addrtype="ipv4"/>
+<address addr="F8:A2:6D:F4:FB:8D" addrtype="mac"/>
+<hostnames>
+<hostname name="Canonf4fb8d" type="PTR"/>
+</hostnames>
+<times srtt="1000" rttvar="5000" to="100000"/>
+</host>
+<host><status state="up" reason="arp-response" reason_ttl="0"/>
+<address addr="192.168.1.166" addrtype="ipv4"/>
+<address addr="D4:8D:26:79:A7:26" addrtype="mac"/>
+<hostnames>
+<hostname name="LG_Smart_Laundry2_open" type="PTR"/>
+</hostnames>
+<times srtt="709000" rttvar="709000" to="3545000"/>
+</host>
+<host><status state="up" reason="arp-response" reason_ttl="0"/>
+<address addr="192.168.1.168" addrtype="ipv4"/>
+<address addr="74:56:3C:BF:B2:9D" addrtype="mac"/>
+<hostnames>
+<hostname name="KaraPC" type="PTR"/>
+</hostnames>
+<times srtt="1000" rttvar="5000" to="100000"/>
+</host>
+<host><status state="up" reason="arp-response" reason_ttl="0"/>
+<address addr="192.168.1.169" addrtype="ipv4"/>
+<address addr="DC:91:BF:DE:E4:EB" addrtype="mac"/>
+<hostnames>
+</hostnames>
+<times srtt="81000" rttvar="81000" to="405000"/>
+</host>
+<host><status state="up" reason="arp-response" reason_ttl="0"/>
+<address addr="192.168.1.171" addrtype="ipv4"/>
+<address addr="78:6D:EB:2E:9A:E8" addrtype="mac"/>
+<hostnames>
+<hostname name="GE_Light_9AE8" type="PTR"/>
+</hostnames>
+<times srtt="490000" rttvar="490000" to="2450000"/>
+</host>
+<host><status state="up" reason="arp-response" reason_ttl="0"/>
+<address addr="192.168.1.172" addrtype="ipv4"/>
+<address addr="78:6D:EB:2F:18:37" addrtype="mac"/>
+<hostnames>
+<hostname name="GE_Light_1837" type="PTR"/>
+</hostnames>
+<times srtt="475000" rttvar="475000" to="2375000"/>
+</host>
+<host><status state="up" reason="arp-response" reason_ttl="0"/>
+<address addr="192.168.1.174" addrtype="ipv4"/>
+<address addr="54:2B:1C:C4:E7:CB" addrtype="mac"/>
+<hostnames>
+</hostnames>
+<times srtt="85000" rttvar="85000" to="425000"/>
+</host>
+<host><status state="up" reason="arp-response" reason_ttl="0"/>
+<address addr="192.168.1.177" addrtype="ipv4"/>
+<address addr="84:EB:3F:7E:AE:54" addrtype="mac"/>
+<hostnames>
+<hostname name="VivintAirTower-7EAE51" type="PTR"/>
+</hostnames>
+<times srtt="87000" rttvar="87000" to="435000"/>
+</host>
+<host><status state="up" reason="arp-response" reason_ttl="0"/>
+<address addr="192.168.1.178" addrtype="ipv4"/>
+<address addr="00:D0:2D:BE:4D:FA" addrtype="mac" vendor="Resideo"/>
+<hostnames>
+<hostname name="GatewayBE4DFA" type="PTR"/>
+</hostnames>
+<times srtt="746000" rttvar="746000" to="3730000"/>
+</host>
+<host><status state="up" reason="arp-response" reason_ttl="0"/>
+<address addr="192.168.1.180" addrtype="ipv4"/>
+<address addr="FC:23:CD:1C:A9:E3" addrtype="mac"/>
+<hostnames>
+</hostnames>
+<times srtt="91000" rttvar="91000" to="455000"/>
+</host>
+<host><status state="up" reason="arp-response" reason_ttl="0"/>
+<address addr="192.168.1.250" addrtype="ipv4"/>
+<address addr="02:0F:B5:A1:7C:D7" addrtype="mac"/>
+<hostnames>
+<hostname name="EX5000" type="PTR"/>
+</hostnames>
+<times srtt="593750" rttvar="589000" to="2949750"/>
+</host>
+<host><status state="up" reason="arp-response" reason_ttl="0"/>
+<address addr="192.168.1.251" addrtype="ipv4"/>
+<address addr="3C:9B:D6:65:A8:CB" addrtype="mac" vendor="Vizio"/>
+<hostnames>
+</hostnames>
+<times srtt="140000" rttvar="140000" to="700000"/>
+</host>
+<host><status state="up" reason="arp-response" reason_ttl="0"/>
+<address addr="192.168.1.252" addrtype="ipv4"/>
+<address addr="00:E4:21:60:CE:2B" addrtype="mac"/>
+<hostnames>
+</hostnames>
+<times srtt="631000" rttvar="631000" to="3155000"/>
+</host>
+<host><status state="up" reason="localhost-response" reason_ttl="0"/>
+<address addr="192.168.1.175" addrtype="ipv4"/>
+<hostnames>
+<hostname name="volsheborkPC" type="PTR"/>
+</hostnames>
+</host>
+<runstats><finished time="1790291888" timestr="Thu Sep 24 19:18:08 2026" elapsed="8.75" summary="Nmap done at Thu Sep 24 19:18:08 2026; 256 IP addresses (21 hosts up) scanned in 8.75 seconds" exit="success"/><hosts up="21" down="235" total="256"/>
+</runstats>
+</nmaprun>
