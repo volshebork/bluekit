@@ -32,7 +32,16 @@ def get_hostnames():
     if os.name != "nt":
         command.insert(0, "sudo")
 
-    subprocess.run(command)
+    # run the scan; skip post-processing if nmap failed
+    result = subprocess.run(command)
+    if result.returncode != 0:
+        print("Error: nmap scan failed.")
+        return
+
+    # insert a blank line before each host entry in the text output, for readability
+    text = txt_file.read_text()
+    text = text.replace("\nNmap scan report for", "\n\nNmap scan report for")
+    txt_file.write_text(text)
 
 
 # allows standalone testing before it's wired into main.py
