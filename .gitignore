@@ -1,5 +1,5 @@
 # scan output and other generated logs
-logs/
+logs/*
 
 # Python bytecode cache
 __pycache__/
