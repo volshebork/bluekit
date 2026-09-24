@@ -16,4 +16,9 @@ python3 main.py
 
 ## Features
 
+### Network Enumeration (nmap)
+
+Get hostnames (ping sweep)
+: this will...
+
 ## Upcoming Features
