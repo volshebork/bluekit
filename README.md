@@ -1,6 +1,6 @@
 # Bluekit
 
-A unified, terminal driven toolkit for blue team incident response exercises. Run `main.py` and navigate with the arrow keys.
+A unified, terminal-driven toolkit for blue team incident response exercises. Run `main.py` and navigate with the arrow keys.
 
 ## Requirements
 
@@ -18,7 +18,6 @@ python3 main.py
 
 ### Network Enumeration (nmap)
 
-Get hostnames (ping sweep)
-: this will...
+`Get hostnames (ping sweep)` will run a basic nmap scan to get hostnames, IPs, and MAC addresses. Results will be exported to logs. An xml file will also be exported which will be used for a future command.
 
 ## Upcoming Features
