@@ -1,7 +1,6 @@
-# ad_tui/py_version/modules/title.py
 # Displays the ASCII art title banner.
 
-def show():
+def title():
     print(r"""
   _     _            _    _ _   
  | |__ | |_   _  ___| | _(_) |_ 
