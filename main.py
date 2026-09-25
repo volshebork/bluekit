@@ -1,7 +1,8 @@
 # Bluekit: main menu entry point.
 
-from modules.common.ensure_dependencies import ensure_dependencies
+from modules.common.ensure_dependencies import ensure_venv, ensure_dependencies
 
+ensure_venv()  # Linux: relaunches under .venv if not already in it
 ensure_dependencies()  # must run before importing third-party packages below
 
 import questionary
