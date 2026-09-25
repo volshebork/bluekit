@@ -7,11 +7,12 @@ import subprocess
 from pathlib import Path
 
 # variables
-logs_dir = Path(__file__).resolve().parents[2] / "logs"  # bluekit/logs
-xml_file = logs_dir / "hostnames.xml"
+logs_dir = Path(__file__).resolve().parents[2] / "logs"  # bluekit/logs; human-readable output
+raw_dir = logs_dir / "raw"  # machine-readable output used by other modules
+xml_file = raw_dir / "hostnames.xml"
 txt_file = logs_dir / "hostnames.txt"
-tmp_xml = logs_dir / "hostnames.xml.tmp"  # nmap writes here first; replaces xml_file only on success
-tmp_txt = logs_dir / "hostnames.txt.tmp"  # nmap writes here first; replaces txt_file only on success
+tmp_xml = raw_dir / "hostnames.xml.tmp"  # nmap writes here first; replaces xml_file only on success
+tmp_txt = raw_dir / "hostnames.txt.tmp"  # nmap writes here first; replaces txt_file only on success
 
 
 def get_hostnames():
@@ -34,8 +35,8 @@ def get_hostnames():
             print(f"Error: '{target}' is not a valid IPv4 address or CIDR range.")
             return
 
-    # create logs dir if it doesn't exist yet
-    logs_dir.mkdir(exist_ok=True)
+    # create logs and raw dirs if they don't exist yet
+    raw_dir.mkdir(parents=True, exist_ok=True)
 
     # ping sweep + reverse DNS, saved as XML and plain text (to temp files)
     # Linux needs sudo; Windows needs to be run from an admin terminal instead
