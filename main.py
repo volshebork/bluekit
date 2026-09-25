@@ -9,6 +9,7 @@ import questionary
 
 from modules.ui.title import title
 from modules.nmap.get_hostnames import get_hostnames
+from modules.nmap.get_host_details import get_host_details
 
 
 def run(command):
@@ -24,11 +25,17 @@ def nmap_menu():
     while True:
         choice = questionary.select(
             "Network Enumeration (nmap)",
-            choices=["Get hostnames (ping sweep)", "Back to Main Menu"],
+            choices=[
+                "1. Discover hosts (ping sweep)",
+                "2. Host details (OS + services)",
+                "Back to Main Menu",
+            ],
         ).ask()
 
-        if choice == "Get hostnames (ping sweep)":
+        if choice == "1. Discover hosts (ping sweep)":
             run(get_hostnames)
+        elif choice == "2. Host details (OS + services)":
+            run(get_host_details)
         else:  # Back to Main Menu, or Ctrl+C (questionary returns None)
             return
 
