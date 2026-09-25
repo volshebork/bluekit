@@ -4,11 +4,10 @@ import ipaddress
 import os
 import shutil
 import subprocess
-from pathlib import Path
+
+from modules.common.logs import logs_dir, raw_dir, archive_previous
 
 # variables
-logs_dir = Path(__file__).resolve().parents[2] / "logs"  # bluekit/logs; human-readable output
-raw_dir = logs_dir / "raw"  # machine-readable output used by other modules
 xml_file = raw_dir / "hostnames.xml"
 txt_file = logs_dir / "hostnames.txt"
 tmp_xml = raw_dir / "hostnames.xml.tmp"  # nmap writes here first; replaces xml_file only on success
@@ -55,10 +54,12 @@ def get_hostnames():
         # (rewritten as a new file, since on Linux the sudo-created one is owned by root)
         text = tmp_txt.read_text()
         text = text.replace("\nNmap scan report for", "\n\nNmap scan report for")
+        text = text.replace("\n# Nmap done at", "\n\n# Nmap done at")
         tmp_txt.unlink()
         tmp_txt.write_text(text)
 
-        # scan succeeded; swap the temp files in over the previous results
+        # scan succeeded; archive previous results, then swap in the new ones
+        archive_previous(txt_file, xml_file)
         tmp_xml.replace(xml_file)
         tmp_txt.replace(txt_file)
         print(f"Results saved to {logs_dir}")
