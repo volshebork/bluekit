@@ -18,6 +18,6 @@ python3 main.py
 
 ### Network Enumeration (nmap)
 
-`Get hostnames (ping sweep)` will run a basic nmap scan to get hostnames, IPs, and MAC addresses. Results will be exported to logs. An xml file will also be exported which will be used for a future command.
+`Get hostnames (ping sweep)` will run a basic nmap scan to get hostnames, IPs, and MAC addresses. Results will be exported to logs.
 
 ## Upcoming Features

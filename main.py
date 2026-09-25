@@ -1,6 +1,6 @@
 # bluekit: main menu entry point.
 
-# comment needed
+# import libraries
 import questionary
 
 # import functions
