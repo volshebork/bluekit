@@ -38,3 +38,15 @@ On Linux, Bluekit creates a `.venv` virtual environment on first run and automat
 Results are saved to `logs/`. Previous results are moved to `logs/history/` with a timestamp.
 
 ## Upcoming Features
+
+### Active Directory
+
+- Session setup (DC, credentials, base DN auto-discovery)
+- Enumerate privileged group members (including nested membership)
+- Remove a list of accounts from privileged groups
+- Disable a list of accounts
+- Get single user details
+- Delete an account
+- Reset the password of an account (requires LDAPS)
+- Get a list of all groups in the domain
+- Get a list of all accounts created in the last 7 days and list the creation date
