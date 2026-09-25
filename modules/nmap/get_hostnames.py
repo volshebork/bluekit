@@ -1,5 +1,6 @@
 # This module runs an nmap ping sweep with reverse DNS to discover live hosts on the network.
 
+import ipaddress
 import os
 import shutil
 import subprocess
@@ -9,6 +10,8 @@ from pathlib import Path
 logs_dir = Path(__file__).resolve().parents[2] / "logs"  # bluekit/logs
 xml_file = logs_dir / "hostnames.xml"
 txt_file = logs_dir / "hostnames.txt"
+tmp_xml = logs_dir / "hostnames.xml.tmp"  # nmap writes here first; replaces xml_file only on success
+tmp_txt = logs_dir / "hostnames.txt.tmp"  # nmap writes here first; replaces txt_file only on success
 
 
 def get_hostnames():
@@ -17,31 +20,52 @@ def get_hostnames():
         print("Error: nmap not found. Install it and make sure it's on PATH.")
         return
 
-    # prompt for target range; blank input is an error
-    target_range = input("Enter the target IP range to scan (e.g. 192.168.1.0/24): ").strip()
-    if not target_range:
-        print("Error: target range cannot be blank.")
+    # prompt for target(s); multiple IPs or CIDR ranges can be space-separated
+    targets = input("Enter target IP(s) or CIDR range(s) (e.g. 192.168.1.0/24): ").split()
+    if not targets:
+        print("Error: target cannot be blank.")
         return
+
+    # validate each target so nmap never interprets bad input (e.g. 123123123 as an IP)
+    for target in targets:
+        try:
+            ipaddress.IPv4Network(target, strict=False)
+        except ValueError:
+            print(f"Error: '{target}' is not a valid IPv4 address or CIDR range.")
+            return
 
     # create logs dir if it doesn't exist yet
     logs_dir.mkdir(exist_ok=True)
 
-    # ping sweep + reverse DNS, saved as XML and plain text
+    # ping sweep + reverse DNS, saved as XML and plain text (to temp files)
     # Linux needs sudo; Windows needs to be run from an admin terminal instead
-    command = ["nmap", "-sn", target_range, "-oX", str(xml_file), "-oN", str(txt_file)]
+    command = ["nmap", "-sn", *targets, "-oX", str(tmp_xml), "-oN", str(tmp_txt)]
     if os.name != "nt":
         command.insert(0, "sudo")
 
-    # run the scan; skip post-processing if nmap failed
-    result = subprocess.run(command)
-    if result.returncode != 0:
-        print("Error: nmap scan failed.")
-        return
+    try:
+        # run the scan; leave previous results untouched if nmap failed
+        result = subprocess.run(command)
+        if result.returncode != 0:
+            print("Error: nmap scan failed. Previous results were kept.")
+            return
 
-    # insert a blank line before each host entry in the text output, for readability
-    text = txt_file.read_text()
-    text = text.replace("\nNmap scan report for", "\n\nNmap scan report for")
-    txt_file.write_text(text)
+        # insert a blank line before each host entry in the text output, for readability
+        # (rewritten as a new file, since on Linux the sudo-created one is owned by root)
+        text = tmp_txt.read_text()
+        text = text.replace("\nNmap scan report for", "\n\nNmap scan report for")
+        tmp_txt.unlink()
+        tmp_txt.write_text(text)
+
+        # scan succeeded; swap the temp files in over the previous results
+        tmp_xml.replace(xml_file)
+        tmp_txt.replace(txt_file)
+        print(f"Results saved to {logs_dir}")
+
+    finally:
+        # clean up temp files left behind by a failed or cancelled scan
+        tmp_xml.unlink(missing_ok=True)
+        tmp_txt.unlink(missing_ok=True)
 
 
 # allows standalone testing before it's wired into main.py
