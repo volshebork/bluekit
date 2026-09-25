@@ -1,9 +1,11 @@
-# bluekit: main menu entry point.
+# Bluekit: main menu entry point.
 
-# import libraries
+from modules.common.ensure_dependencies import ensure_dependencies
+
+ensure_dependencies()  # must run before importing third-party packages below
+
 import questionary
 
-# import functions
 from modules.ui.title import title
 from modules.nmap.get_hostnames import get_hostnames
 
