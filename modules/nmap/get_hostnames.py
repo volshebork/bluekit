@@ -4,14 +4,17 @@ import ipaddress
 import os
 import shutil
 import subprocess
+import xml.etree.ElementTree as ET
 
 from modules.common.logs import logs_dir, raw_dir, archive_previous
 
 # variables
 xml_file = raw_dir / "hostnames.xml"
 txt_file = logs_dir / "hostnames.txt"
+ips_file = raw_dir / "ips.txt"  # live host IPs, one per line; used by get_host_details
 tmp_xml = raw_dir / "hostnames.xml.tmp"  # nmap writes here first; replaces xml_file only on success
 tmp_txt = raw_dir / "hostnames.txt.tmp"  # nmap writes here first; replaces txt_file only on success
+tmp_ips = raw_dir / "ips.txt.tmp"  # built from tmp_xml; replaces ips_file only on success
 
 
 def get_hostnames():
@@ -50,7 +53,7 @@ def get_hostnames():
             print("Error: nmap scan failed. Previous results were kept.")
             return
 
-        # insert a blank line before each host entry in the text output, for readability
+        # insert a blank line before each host entry and the closing summary, for readability
         # (rewritten as a new file, since on Linux the sudo-created one is owned by root)
         text = tmp_txt.read_text()
         text = text.replace("\nNmap scan report for", "\n\nNmap scan report for")
@@ -58,16 +61,27 @@ def get_hostnames():
         tmp_txt.unlink()
         tmp_txt.write_text(text)
 
+        # extract the IPs of live hosts from the XML into a plain list, one per line
+        root = ET.parse(tmp_xml).getroot()
+        ips = [
+            host.find("address[@addrtype='ipv4']").get("addr")
+            for host in root.findall("host")
+            if host.find("status").get("state") == "up"
+        ]
+        tmp_ips.write_text("".join(f"{ip}\n" for ip in ips))
+
         # scan succeeded; archive previous results, then swap in the new ones
-        archive_previous(txt_file, xml_file)
+        archive_previous(txt_file, xml_file, ips_file)
         tmp_xml.replace(xml_file)
         tmp_txt.replace(txt_file)
-        print(f"Results saved to {logs_dir}")
+        tmp_ips.replace(ips_file)
+        print(f"{len(ips)} live hosts found. Results saved to {logs_dir}")
 
     finally:
         # clean up temp files left behind by a failed or cancelled scan
         tmp_xml.unlink(missing_ok=True)
         tmp_txt.unlink(missing_ok=True)
+        tmp_ips.unlink(missing_ok=True)
 
 
 # allows standalone testing before it's wired into main.py
